@@ -20,7 +20,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
     if (this.x > 505) {
         this.x = -100;
-        this.speed += Math.floor(Math.random() + 50);
+        this.speed = Math.floor(Math.random() * 200) + 100;
     }
 
    if (player.x < this.x + 50 && 
@@ -103,7 +103,7 @@ Player.prototype.handleInput = function(key) {
 
 const first = new Enemy(0, 61, 150);
 const second = new Enemy(0,144, 100);
-const third = new Enemy(0, 227, 50);
+const third = new Enemy(0, 227, 200);
 const startX = 202;
 const startY = 395;
 
