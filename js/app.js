@@ -1,6 +1,6 @@
 
 /********************************* enemy class *********************************/
-
+/*
 // Constructor function for enemies
 let Enemy = function(x, y, speed) {
     this.x = x;
@@ -34,7 +34,7 @@ Enemy.prototype.render = function() {
 };
 
 /******************************** player class ********************************/
-
+/*
 // Constructor function for the player
 let Player = function(x, y) {
     this.x = x;
@@ -76,8 +76,84 @@ Player.prototype.handleInput = function(key) {
         }, 100)
     }
 };
+*/
 
-/******************************************************************************/
+/********************************** ES6 classes ******************************************/
+
+class Enemy {
+    constructor(x, y, speed) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.sprite = 'images/enemy-bug.png';
+    }
+
+    update(dt) {
+        this.x += this.speed * dt;
+        if (this.x > 505) {
+            this.x = -100;
+            this.speed = Math.floor(Math.random() * 200) + 100;
+        }
+
+        // collision detection
+        if (player.x < this.x + 50 && 
+            player.x + 50 > this.x &&
+            player.y < this.y + 50 &&
+            player.y + 50 > this.y) {
+                player.x = startX;
+                player.y = startY;
+        }
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
+
+class Player {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+        this.sprite = 'images/char-boy.png';
+    }
+
+    update() {
+
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+
+    handleInput(key) {
+        let stepX = 101;
+        let stepY = 83;
+
+        switch(key) {
+            case "left":
+                this.x > 0 && (this.x -= stepX);
+                break;
+            case "right":
+                this.x < 404 && (this.x += stepX);
+                break;
+            case "up":
+                this.y > 0 && (this.y -= stepY);
+                break;
+            case "down":
+                this.y < 332 && (this.y += stepY);
+                break;
+        }
+
+        // alert message
+        if (player.y < 50) {
+            setTimeout(() => {
+                player.x = startX;
+                player.y = startY;
+                alert("Congratulations! You won!");
+            }, 100)
+        }
+    }
+}
 
 // three enemy objects
 const first = new Enemy(0, 61, 150);
@@ -94,7 +170,7 @@ const player = new Player(startX, startY);
 
 
 // This listens for key presses and sends the keys to Player.handleInput() method.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', (e) => {
     let allowedKeys = {
         37: 'left',
         38: 'up',
