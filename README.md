@@ -6,4 +6,4 @@ You can run the Game on it's [GitHub Page](https://alenaats.github.io/Classic-Ar
 
 ## Basic Rules
 
-Use arrow keys to move the player on the board. Once the player reaches the water the game is won and starts again. The player gets back to its start position. Once the player collides with the bug the game is lost and the player gets back to its start position.
+Use arrow keys to move the player on the board. Once the player reaches the water the game is won. After the alert message is closed the player gets back to its start position. Once the player collides with the bug the game is lost and the player gets back to its start position.
