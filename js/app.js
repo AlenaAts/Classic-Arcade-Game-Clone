@@ -44,12 +44,7 @@ let Player = function(x, y) {
 
 // The player reaches the water and gets back to start position
 Player.prototype.update = function(dt) {
-    if (player.y < 50) {
-        setTimeout(function() {
-            player.x = startX;
-            player.y = startY;
-        }, 100)
-    }
+
 };
 
 // Draw the player on the screen, required method for game
@@ -61,20 +56,6 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
     let stepX = 101;
     let stepY = 83;
-    /*switch(key) {
-        case "left" && this.x > 0:
-            this.x -= 101;
-        break;
-        case "right" && this.x < 404:
-            this.x += 101;
-        break;
-        case "up" && this.y > 0:
-            this.y -= 83;
-        break;
-        case "down" && this.y < 332:
-            this.y += 83;
-        break;
-    }*/  // is it possible to work with switch?
 
     if (key == "left" && this.x > 0) {
         this.x -= stepX;
@@ -84,6 +65,15 @@ Player.prototype.handleInput = function(key) {
         this.y -= stepY;
     } else if (key == "down" && this.y < 332) {
         this.y += stepY;
+    }
+
+    // alert message
+    if (player.y < 50) {
+        setTimeout(function() {
+            player.x = startX;
+            player.y = startY;
+            alert("Congratulations! You won!");
+        }, 100)
     }
 };
 
